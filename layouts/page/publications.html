@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - Metiri Consult</title>
+    <style>
+        /* Same base styles as other pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a.active {
+            color: #667eea;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Publications Categories */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 25px;
+            border: 2px solid #667eea;
+            background: transparent;
+            color: #667eea;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Publications Grid */
+        .publications-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .publications-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .publication-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .publication-type {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .publication-year {
+            background: #f8f9fa;
+            color: #666;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .publication-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .publication-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .publication-title a:hover {
+            color: #667eea;
+        }
+
+        .publication-authors {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-journal {
+            color: #2c3e50;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .publication-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .pub-link {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pub-link:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .pub-link.secondary {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 1px solid #667eea;
+        }
+
+        .pub-link.secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Statistics */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin: 4rem 0;
+            border-radius: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .category-nav {
+                gap: 1rem;
+            }
+            
+            .publication-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .publication-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container">
+            <div class="nav-brand">
+                <a href="/" class="logo">Metiri Consult</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/publications/" class="active">Publications</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="https://witjes.dk/login" target="_blank">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>{{ .Title }}</h1>
+            <p>{{ .Description }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="intro-section">
+                <h2>Academic Research & Policy Impact</h2>
+                <p>My research focuses on judicial administration, public sector efficiency, and data-driven governance solutions. Through rigorous academic research and practical applications, I contribute to evidence-based policy making in justice systems worldwide.</p>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Published Studies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Countries Analyzed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years Research</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Multiple</div>
+                        <div class="stat-label">International Journals</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Publications -->
+            <div class="publications-section">
+                <h3 class="section-title">Recent Publications</h3>
+                <div class="publications-grid">
+                    
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Journal Article</span>
+                            <span class="publication-year">2024</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://iacajournal.org/articles/10.36745/ijca.581" target="_blank">Explaining Cross-Country Differences in the Number of Judges per Capita</a>
+                        </h4>
+                        <div class="publication-journal">International Journal for Court Administration, vol. 15, issue 1</div>
+                        <div class="publication-description">Analysis of judicial staffing patterns across different countries, identifying key factors that influence the optimal number of judges per capita.</div>
+                        <div class="publication-links">
+                            <a href="https://iacajournal.org/articles/10.36745/ijca.581" class="pub-link" target="_blank">Read Article</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Research Study</span>
+                            <span class="publication-year">2024</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://en.rockwoolfonden.dk/publications/efficiency-in-danish-local-governments-what-sets-the-best-apart/" target="_blank">Efficiency in Danish Local Governments: What Sets the Best Apart</a>
+                        </h4>
+                        <div class="publication-authors">with Peter Bogetoft</div>
+                        <div class="publication-journal">Rockwool Foundation Study Paper no. 232</div>
+                        <div class="publication-description">Comprehensive analysis identifying the characteristics and practices that distinguish high-performing Danish municipalities.</div>
+                        <div class="publication-links">
+                            <a href="https://en.rockwoolfonden.dk/publications/efficiency-in-danish-local-governments-what-sets-the-best-apart/" class="pub-link" target="_blank">View Study</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Research Study</span>
+                            <span class="publication-year">2024</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://en.rockwoolfonden.dk/publications/service-delivery-and-efficiency-in-danish-local-governments-a-comprehensive-approach/" target="_blank">Service Delivery and Efficiency in Danish Local Governments: A Comprehensive Approach</a>
+                        </h4>
+                        <div class="publication-authors">with Peter Bogetoft</div>
+                        <div class="publication-journal">Rockwool Foundation Study Paper no. 231</div>
+                        <div class="publication-description">Detailed examination of service delivery mechanisms and efficiency metrics in Danish municipal governance.</div>
+                        <div class="publication-links">
+                            <a href="https://en.rockwoolfonden.dk/publications/service-delivery-and-efficiency-in-danish-local-governments-a-comprehensive-approach/" class="pub-link" target="_blank">View Study</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Research Study</span>
+                            <span class="publication-year">2024</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://en.rockwoolfonden.dk/publications/the-impact-of-local-government-services-on-house-prices/" target="_blank">The Impact of Local Government Services on House Prices</a>
+                        </h4>
+                        <div class="publication-authors">with Peter Bogetoft and Lasse Mathiesen</div>
+                        <div class="publication-journal">Rockwool Foundation Study Paper no. 230</div>
+                        <div class="publication-description">Economic analysis of how public service quality affects real estate valuations in local markets.</div>
+                        <div class="publication-links">
+                            <a href="https://en.rockwoolfonden.dk/publications/the-impact-of-local-government-services-on-house-prices/" class="pub-link" target="_blank">View Study</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Journal Article</span>
+                            <span class="publication-year">2021</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0305048320307295" target="_blank">Benefit-of-the-doubt approach to workload indicators: Simplifying the use of case weights in court evaluations</a>
+                        </h4>
+                        <div class="publication-authors">with Peter Bogetoft</div>
+                        <div class="publication-journal">Omega, Volume 103</div>
+                        <div class="publication-description">Methodological framework for implementing case weighting systems in judicial performance evaluation.</div>
+                        <div class="publication-links">
+                            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0305048320307295" class="pub-link" target="_blank">Read Article</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Country-Specific Studies -->
+            <div class="publications-section">
+                <h3 class="section-title">Country-Specific Judicial Studies</h3>
+                <div class="publications-grid">
+                    
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Policy Report</span>
+                            <span class="publication-year">2018</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://ewmi-ruleoflawgeo.org/uploads/files/4566AssessmentoftheneedforjudgesinGeorgia-ENG.pdf.pdf" target="_blank">Assessment of the need for judges in Georgia</a>
+                        </h4>
+                        <div class="publication-authors">with Tea Machaidze, Elene Janelidze and Mariam Makishvili</div>
+                        <div class="publication-description">Comprehensive analysis of judicial staffing requirements and workload distribution in Georgian courts.</div>
+                        <div class="publication-links">
+                            <a href="https://ewmi-ruleoflawgeo.org/uploads/files/4566AssessmentoftheneedforjudgesinGeorgia-ENG.pdf.pdf" class="pub-link" target="_blank">View Report</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Policy Study</span>
+                            <span class="publication-year">2014</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://crjm.org/wp-content/uploads/2014/06/2014-Study-Specialis-Judges-MD_en.pdf" target="_blank">Specialisation of judges and feasibility of creating administrative courts in the Republic of Moldova</a>
+                        </h4>
+                        <div class="publication-authors">with Nadejda Hriptievschi and Vladislav Gribincea</div>
+                        <div class="publication-description">Strategic analysis of judicial specialization and administrative court implementation in Moldova.</div>
+                        <div class="publication-links">
+                            <a href="https://crjm.org/wp-content/uploads/2014/06/2014-Study-Specialis-Judges-MD_en.pdf" class="pub-link" target="_blank">View Study</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Optimization Study</span>
+                            <span class="publication-year">2014</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://www.justice.gov.md/public/files/file/reforma_sectorul_justitiei/pilonstudiu1/Studiu_Optimiz_Hartii_Jud_-_CRJM-2014_en_2.pdf" target="_blank">Optimization of the judicial map in the Republic of Moldova</a>
+                        </h4>
+                        <div class="publication-authors">with Nadejda Hriptievschi and Vladislav Gribincea</div>
+                        <div class="publication-description">Geographic and structural optimization of court locations and jurisdictions in Moldova.</div>
+                        <div class="publication-links">
+                            <a href="https://www.justice.gov.md/public/files/file/reforma_sectorul_justitiei/pilonstudiu1/Studiu_Optimiz_Hartii_Jud_-_CRJM-2014_en_2.pdf" class="pub-link" target="_blank">View Study</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Assessment Report</span>
+                            <span class="publication-year">2018</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://newjustice.org.ua/wp-content/uploads/2018/06/SJA_Structural_Assessment_JW_eng.pdf" target="_blank">Analysis of the Organization of Court Administration in Ukraine</a>
+                        </h4>
+                        <div class="publication-description">Structural assessment of judicial administration systems and recommendations for reform in Ukraine.</div>
+                        <div class="publication-links">
+                            <a href="https://newjustice.org.ua/wp-content/uploads/2018/06/SJA_Structural_Assessment_JW_eng.pdf" class="pub-link" target="_blank">View Report</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Education & Training Studies -->
+            <div class="publications-section">
+                <h3 class="section-title">Education & Training Research</h3>
+                <div class="publications-grid">
+                    
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Journal Article</span>
+                            <span class="publication-year">2017</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://www.tandfonline.com/doi/abs/10.1080/09243453.2016.1247731" target="_blank">Apples to oranges: benchmarking vocational education and training programmes</a>
+                        </h4>
+                        <div class="publication-authors">with Peter Bogetoft</div>
+                        <div class="publication-journal">School Effectiveness and School Improvement, Volume 28, Issue 2</div>
+                        <div class="publication-description">Methodological framework for comparing diverse vocational education programs using standardized metrics.</div>
+                        <div class="publication-links">
+                            <a href="https://www.tandfonline.com/doi/abs/10.1080/09243453.2016.1247731" class="pub-link" target="_blank">Read Article</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Research Report</span>
+                            <span class="publication-year">2013</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://norden.diva-portal.org/smash/get/diva2:702590/FULLTEXT01.pdf" target="_blank">Productivity and education: Benchmarking of elementary and lower secondary schools in Denmark</a>
+                        </h4>
+                        <div class="publication-authors">with Peter Bogetoft</div>
+                        <div class="publication-description">Comprehensive benchmarking study of Danish schools using advanced efficiency measurement techniques.</div>
+                        <div class="publication-links">
+                            <a href="https://norden.diva-portal.org/smash/get/diva2:702590/FULLTEXT01.pdf" class="pub-link" target="_blank">View Report</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Conference Presentations -->
+            <div class="publications-section">
+                <h3 class="section-title">Conference Presentations & Special Reports</h3>
+                <div class="publications-grid">
+                    
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Conference Proceedings</span>
+                            <span class="publication-year">2019</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://bookdown.org/jw_/BookdownJW/" target="_blank">Summary of Presentation at the International Justice Forum in Nur-Sultan</a>
+                        </h4>
+                        <div class="publication-description">Comprehensive summary of insights shared at the international forum on justice system optimization.</div>
+                        <div class="publication-links">
+                            <a href="https://bookdown.org/jw_/BookdownJW/" class="pub-link" target="_blank">View Summary</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-meta">
+                            <span class="publication-type">Conference</span>
+                            <span class="publication-year">2016</span>
+                        </div>
+                        <h4 class="publication-title">
+                            <a href="https://courtoptimization.wixsite.com/ewmi/papers" target="_blank">International Conference on Optimization of Court Performance and Resource Allocation</a>
+                        </h4>
+                        <div class="publication-journal">Bucharest, Romania</div>
+                        <div class="publication-description">Collection of papers and presentations from the international conference on judicial optimization.</div>
+                        <div class="publication-links">
+                            <a href="https://courtoptimization.wixsite.com/ewmi/papers" class="pub-link" target="_blank">View Papers</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Interested in Collaboration?</h2>
+            <p>Let's discuss how my research expertise can contribute to your project or organization</p>
+            <a href="/contact/" class="btn btn-primary">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="/services/">Case Weighting Systems</a>
+                    <a href="/services/">Data Analytics</a>
+                    <a href="/services/">Management Tools</a>
+                    <a href="/services/">Consulting</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="/publications/">Academic Publications</a>
+                    <a href="/case-studies/">Case Studies</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="mailto:jw@metiri.dk">jw@metiri.dk</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="/contact/">Schedule Consultation</a>
+                </div>
+            </div>
+            <p>&copy; 2025 Metiri Consult - Dr. Jesper Wittrup. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

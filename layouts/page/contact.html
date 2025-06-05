@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - Metiri Consult</title>
+    <style>
+        /* Same base styles as other pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a.active {
+            color: #667eea;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .contact-method {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-method-icon {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-method p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        /* Additional Info */
+        .additional-info {
+            background: #f8f9fa;
+            padding: 3rem;
+            margin: 4rem 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .additional-info h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .additional-info p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .expertise-tags {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container">
+            <div class="nav-brand">
+                <a href="/" class="logo">Metiri Consult</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/publications/">Publications</a></li>
+                <li><a href="/contact/" class="active">Contact</a></li>
+                <li><a href="https://witjes.dk/login" target="_blank">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>{{ .Title }}</h1>
+            <p>{{ .Description }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="contact-container">
+                
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Let's Connect</h2>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">📧</div>
+                        <h3>Email Consultation</h3>
+                        <p>For project inquiries, research collaboration, or general questions about judicial efficiency and data-driven solutions.</p>
+                        <a href="#contact-form" class="contact-button">Send Message</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-method-icon">🤝</div>
+                        <h3>Professional Collaboration</h3>
+                        <p>Interested in research partnerships, speaking engagements, or consulting services for your organization.</p>
+                        <a href="#contact-form" class="contact-button">Discuss Collaboration</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-method-icon">📊</div>
+                        <h3>Data & Analytics Projects</h3>
+                        <p>Need help with case weighting systems, court optimization, or public sector efficiency analysis.</p>
+                        <a href="#contact-form" class="contact-button">Get Started</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-method-icon">🌍</div>
+                        <h3>International Projects</h3>
+                        <p>Working on justice system reforms or public sector optimization in any country worldwide.</p>
+                        <a href="#contact-form" class="contact-button">Explore Options</a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form" id="contact-form">
+                    <h2>Send a Message</h2>
+                    <p class="subtitle">Fill out the form below and I'll get back to you within 24 hours. All inquiries are treated confidentially.</p>
+                    
+                    <div class="success-message" id="success-message">
+                        Thank you for your message! I'll get back to you within 24 hours.
+                    </div>
+
+                    <form action="https://formspree.io/f/xovaygov" method="POST" id="contact-form-element">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="organization">Organization</label>
+                                <input type="text" id="organization" name="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiry-type">Type of Inquiry</label>
+                            <select id="inquiry-type" name="inquiry-type">
+                                <option value="">Select an option</option>
+                                <option value="consulting">Consulting Services</option>
+                                <option value="research">Research Collaboration</option>
+                                <option value="speaking">Speaking Engagement</option>
+                                <option value="case-weighting">Case Weighting Systems</option>
+                                <option value="court-optimization">Court Optimization</option>
+                                <option value="data-analytics">Data Analytics Project</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Please describe your project, timeline, and any specific requirements..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="additional-info">
+                <h3>Areas of Expertise</h3>
+                <p>I specialize in helping organizations optimize their operations through data-driven solutions. Whether you're looking to improve judicial efficiency, implement case weighting systems, or enhance public sector performance, I'm here to help.</p>
+                
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Smart Case Weighting</span>
+                    <span class="expertise-tag">Judicial Administration</span>
+                    <span class="expertise-tag">Court Optimization</span>
+                    <span class="expertise-tag">Data Analytics</span>
+                    <span class="expertise-tag">Public Sector Efficiency</span>
+                    <span class="expertise-tag">Performance Measurement</span>
+                    <span class="expertise-tag">Resource Allocation</span>
+                    <span class="expertise-tag">International Consulting</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="/services/">Case Weighting Systems</a>
+                    <a href="/services/">Data Analytics</a>
+                    <a href="/services/">Management Tools</a>
+                    <a href="/services/">Consulting</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="/publications/">Academic Publications</a>
+                    <a href="/case-studies/">Case Studies</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="/contact/">Send Message</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="/contact/">Schedule Consultation</a>
+                </div>
+            </div>
+            <p>&copy; 2025 Metiri Consult - Dr. Jesper Wittrup. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contact-form-element').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Submit form
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Reset form
+                    this.reset();
+                    // Scroll to success message
+                    document.getElementById('success-message').scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        });
+    </script>
+</body>
+</html>

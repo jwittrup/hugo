@@ -1,0 +1,42 @@
+baseURL: "https://metiri.dk/"
+languageCode: "en"
+title: "Metiri Consult"
+author: "Dr. Jesper Wittrup"
+
+params:
+  description: "Making justice systems efficient through data-driven solutions for courts and public sector institutions worldwide"
+  author: "Dr. Jesper Wittrup"
+  email: "jw@metiri.dk"
+  phone: "(+45) 60897138"
+  
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: "github"
+
+menu:
+  main:
+    - name: "About"
+      url: "/about/"
+      weight: 1
+    - name: "Services"
+      url: "/blog/"
+      weight: 2
+    - name: "Case Studies"
+      url: "/case-studies/"
+      weight: 3
+    - name: "CV"
+      url: "/docs/CV2025.pdf"
+      weight: 4
+    - name: "Publications"
+      url: "/publications/"
+      weight: 5
+    - name: "Contact"
+      url: "/contact/"
+      weight: 6
+
+outputs:
+  home: ["HTML", "RSS"]
+  page: ["HTML"]

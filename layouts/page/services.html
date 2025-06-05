@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - Metiri Consult</title>
+    <style>
+        /* Same base styles as homepage */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .site-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .site-header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a.active {
+            color: #667eea;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 60px;
+        }
+
+        .service-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+        }
+
+        .service-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .service-item p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .service-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .benefits-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .benefits-box h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container">
+            <div class="nav-brand">
+                <a href="/" class="logo">Metiri Consult</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/services/" class="active">Services</a></li>
+                <li><a href="/publications/">Publications</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="https://witjes.dk/login" target="_blank">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>{{ .Title }}</h1>
+            <p>{{ .Description }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="intro-section">
+                <h2>Data-Driven Solutions for Justice & Public Sector Efficiency</h2>
+                <p>I provide specialized consulting services to help courts, judicial institutions, and public sector organizations optimize their operations through innovative data analysis and management tools.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-item">
+                    <div class="service-icon">⚖️</div>
+                    <h3>Smart Case Weighting Systems</h3>
+                    <p>Advanced approach to judicial workload assessment that enables fair and accurate resource allocation across different case types and complexities.</p>
+                    
+                    <div class="service-features">
+                        <h4>What's Included:</h4>
+                        <ul class="feature-list">
+                            <li>Custom case weighting algorithms</li>
+                            <li>Workload measurement frameworks</li>
+                            <li>Resource allocation models</li>
+                            <li>Performance benchmarking tools</li>
+                            <li>Implementation support and training</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Key Benefits</h4>
+                        <ul class="feature-list">
+                            <li>More accurate judicial workload assessment</li>
+                            <li>Fair distribution of cases among judges</li>
+                            <li>Improved budget allocation decisions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-item">
+                    <div class="service-icon">📊</div>
+                    <h3>Data Analytics & Insights</h3>
+                    <p>Transform complex judicial and administrative data into clear, actionable insights that drive operational improvements and informed decision-making.</p>
+                    
+                    <div class="service-features">
+                        <h4>What's Included:</h4>
+                        <ul class="feature-list">
+                            <li>Statistical analysis of court operations</li>
+                            <li>Performance trend identification</li>
+                            <li>Efficiency bottleneck analysis</li>
+                            <li>Comparative benchmarking studies</li>
+                            <li>Custom reporting solutions</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Key Benefits</h4>
+                        <ul class="feature-list">
+                            <li>Clear understanding of organizational performance</li>
+                            <li>Evidence-based policy recommendations</li>
+                            <li>Enhanced transparency and accountability</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-item">
+                    <div class="service-icon">💻</div>
+                    <h3>Interactive Management Tools</h3>
+                    <p>Custom web applications and dashboards designed specifically for judicial and public sector management, providing real-time insights and decision support.</p>
+                    
+                    <div class="service-features">
+                        <h4>What's Included:</h4>
+                        <ul class="feature-list">
+                            <li>Custom Shiny web applications</li>
+                            <li>Real-time performance dashboards</li>
+                            <li>Interactive data visualization tools</li>
+                            <li>User-friendly management interfaces</li>
+                            <li>Mobile-responsive design</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Key Benefits</h4>
+                        <ul class="feature-list">
+                            <li>Real-time access to key metrics</li>
+                            <li>Streamlined reporting processes</li>
+                            <li>Improved operational oversight</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-item">
+                    <div class="service-icon">📈</div>
+                    <h3>Performance Measurement & Monitoring</h3>
+                    <p>Comprehensive systems for measuring, monitoring, and improving organizational performance in judicial and public sector contexts.</p>
+                    
+                    <div class="service-features">
+                        <h4>What's Included:</h4>
+                        <ul class="feature-list">
+                            <li>Key performance indicator (KPI) development</li>
+                            <li>Performance monitoring frameworks</li>
+                            <li>Quality assessment tools</li>
+                            <li>Continuous improvement processes</li>
+                            <li>Stakeholder reporting systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Key Benefits</h4>
+                        <ul class="feature-list">
+                            <li>Clear performance visibility</li>
+                            <li>Systematic quality improvement</li>
+                            <li>Enhanced accountability</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-item">
+                    <div class="service-icon">🗺️</div>
+                    <h3>Judicial Map Optimization</h3>
+                    <p>Strategic analysis and redesign of court structures and geographical distribution to optimize access to justice and resource efficiency.</p>
+                    
+                    <div class="service-features">
+                        <h4>What's Included:</h4>
+                        <ul class="feature-list">
+                            <li>Geographic accessibility analysis</li>
+                            <li>Caseload distribution assessment</li>
+                            <li>Court structure optimization</li>
+                            <li>Resource allocation planning</li>
+                            <li>Implementation roadmaps</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Key Benefits</h4>
+                        <ul class="feature-list">
+                            <li>Improved access to justice</li>
+                            <li>Optimized resource utilization</li>
+                            <li>Reduced operational costs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-item">
+                    <div class="service-icon">💰</div>
+                    <h3>Judicial Budgeting & Resource Allocation</h3>
+                    <p>Evidence-based approaches to judicial budgeting that ensure efficient allocation of financial and human resources.</p>
+                    
+                    <div class="service-features">
+                        <h4>What's Included:</h4>
+                        <ul class="feature-list">
+                            <li>Budget allocation models</li>
+                            <li>Cost-effectiveness analysis</li>
+                            <li>Resource need assessments</li>
+                            <li>Financial planning tools</li>
+                            <li>ROI measurement frameworks</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Key Benefits</h4>
+                        <ul class="feature-list">
+                            <li>Optimized budget allocation</li>
+                            <li>Improved cost-effectiveness</li>
+                            <li>Enhanced financial planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="service-item">
+                    <div class="service-icon">🔬</div>
+                    <h3>Research & Academic Collaboration</h3>
+                    <p>I participate in research projects that advance the understanding of judicial administration and public sector efficiency, often contributing pro bono when the research addresses important societal challenges.</p>
+                    
+                    <div class="service-features">
+                        <h4>Research Areas:</h4>
+                        <ul class="feature-list">
+                            <li>Judicial performance measurement methodologies</li>
+                            <li>Court efficiency and access to justice</li>
+                            <li>Public sector benchmarking techniques</li>
+                            <li>Data-driven governance approaches</li>
+                            <li>Comparative judicial administration studies</li>
+                        </ul>
+                    </div>
+
+                    <div class="benefits-box">
+                        <h4>Research Contributions</h4>
+                        <ul class="feature-list">
+                            <li>Academic publications in peer-reviewed journals</li>
+                            <li>Conference presentations and workshops</li>
+                            <li>Collaborative studies with universities</li>
+                            <li>Policy research for international organizations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Ready to Transform Your Organization?</h2>
+            <p>Let's discuss how data-driven solutions can improve your efficiency and effectiveness</p>
+            <a href="/contact/" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <a href="/services/">Case Weighting Systems</a>
+                    <a href="/services/">Data Analytics</a>
+                    <a href="/services/">Management Tools</a>
+                    <a href="/services/">Consulting</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="/publications/">Academic Publications</a>
+                    <a href="/case-studies/">Case Studies</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="mailto:jw@metiri.dk">jw@metiri.dk</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="/contact/">Schedule Consultation</a>
+                </div>
+            </div>
+            <p>&copy; 2025 Metiri Consult - Dr. Jesper Wittrup. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
