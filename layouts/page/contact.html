@@ -410,32 +410,10 @@
     </footer>
 
     <script>
-        // Form submission handling
+        // Simple form submission - let browser handle it naturally
         document.getElementById('contact-form-element').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show success message
-            document.getElementById('success-message').style.display = 'block';
-            
-            // Submit form
-            fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    // Reset form
-                    this.reset();
-                    // Scroll to success message
-                    document.getElementById('success-message').scrollIntoView({behavior: 'smooth'});
-                } else {
-                    alert('There was an error sending your message. Please try again.');
-                }
-            }).catch(error => {
-                alert('There was an error sending your message. Please try again.');
-            });
+            // Don't prevent default - let the form submit normally to Formspree
+            console.log('Form being submitted to Formspree...');
         });
     </script>
 </body>
