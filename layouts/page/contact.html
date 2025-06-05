@@ -347,7 +347,7 @@
                         Thank you for your message! I'll get back to you within 24 hours.
                     </div>
 
-                    <form action="https://formspree.io/f/xknlkddr" method="POST" id="contact-form-element">
+                    <form action="https://formspree.io/f/xknlkddr" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Name *</label>
@@ -355,7 +355,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="_replyto" required>
                             </div>
                         </div>
 
@@ -366,13 +366,15 @@
 
                         <div class="form-group">
                             <label for="subject">Subject *</label>
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="_subject" required>
                         </div>
 
                         <div class="form-group">
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" placeholder="Please describe your project and how I can help..." required></textarea>
                         </div>
+
+                        <input type="hidden" name="_next" value="https://businesspage25.netlify.app/contact/?success=true">
 
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
@@ -409,12 +411,6 @@
         </div>
     </footer>
 
-    <script>
-        // Simple form submission - let browser handle it naturally
-        document.getElementById('contact-form-element').addEventListener('submit', function(e) {
-            // Don't prevent default - let the form submit normally to Formspree
-            console.log('Form being submitted to Formspree...');
-        });
-    </script>
+
 </body>
 </html>
