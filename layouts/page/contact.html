@@ -343,12 +343,13 @@
 
                 <!-- Contact Form -->
                 <div class="contact-form">
-                    <div class="success-message" id="success-message">
-                        Thank you for your message! I'll get back to you within 24 hours.
+                    <!-- Success Message - shows when ?success=true -->
+                    <div class="success-message" id="success-message" style="display: none;">
+                        <strong>Thank you!</strong> Your message has been sent successfully. I'll get back to you within 24 hours.
                     </div>
 
                     <!-- Netlify Forms -->
-                    <form name="contact" method="POST" netlify>
+                    <form name="contact" method="POST" netlify action="/contact/?success=true">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Name *</label>
@@ -411,5 +412,13 @@
     </footer>
 
 
+    <script>
+        // Show success message if redirected with ?success=true
+        if (window.location.search.includes('success=true')) {
+            document.getElementById('success-message').style.display = 'block';
+            // Scroll to success message
+            document.getElementById('success-message').scrollIntoView({behavior: 'smooth'});
+        }
+    </script>
 </body>
 </html>
