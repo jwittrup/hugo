@@ -16,27 +16,36 @@ markup:
   highlight:
     style: "github"
 
+# Since you're using custom layouts, you may not need the menu section
+# Your navigation is handled directly in your HTML templates
+# But keeping this for potential future use:
 menu:
   main:
-    - name: "About"
-      url: "/about/"
-      weight: 1
     - name: "Services"
-      url: "/blog/"
-      weight: 2
-    - name: "Case Studies"
-      url: "/case-studies/"
-      weight: 3
-    - name: "CV"
-      url: "/docs/CV2025.pdf"
-      weight: 4
+      url: "/services/"
+      weight: 1
     - name: "Publications"
       url: "/publications/"
-      weight: 5
+      weight: 2
     - name: "Contact"
       url: "/contact/"
-      weight: 6
+      weight: 3
+    - name: "Login"
+      url: "https://witjes.dk/login"
+      weight: 4
 
 outputs:
   home: ["HTML", "RSS"]
   page: ["HTML"]
+
+# Enable emoji support
+enableEmoji: true
+
+# Ignore R-related files (important for blogdown)
+ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
+
+# Pagination setting
+paginate: 5
+
+# Preserve taxonomy names
+preserveTaxonomyNames: true

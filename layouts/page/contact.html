@@ -99,67 +99,25 @@
         }
 
         .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        /* Contact Info */
-        .contact-info {
-            background: #f8f9fa;
-            padding: 3rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
+        .intro-section {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .contact-info h2 {
+        .intro-section h2 {
             font-size: 2rem;
             color: #2c3e50;
-            margin-bottom: 2rem;
-        }
-
-        .contact-method {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        }
-
-        .contact-method-icon {
-            font-size: 2rem;
-            color: #667eea;
             margin-bottom: 1rem;
         }
 
-        .contact-method h3 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-method p {
+        .intro-section p {
+            font-size: 1.1rem;
             color: #666;
-            line-height: 1.6;
-        }
-
-        .contact-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-button:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
+            line-height: 1.7;
         }
 
         /* Contact Form */
@@ -168,18 +126,7 @@
             padding: 3rem;
             border-radius: 15px;
             box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-        }
-
-        .contact-form h2 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .contact-form .subtitle {
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.6;
+            border-left: 4px solid #667eea;
         }
 
         .form-group {
@@ -252,43 +199,36 @@
             display: none;
         }
 
-        /* Additional Info */
-        .additional-info {
-            background: #f8f9fa;
-            padding: 3rem;
-            margin: 4rem 0;
-            border-radius: 15px;
-            text-align: center;
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
-        .additional-info h3 {
-            font-size: 1.8rem;
-            color: #2c3e50;
+        .contact-method {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .contact-method-icon {
+            font-size: 2.5rem;
+            color: #667eea;
             margin-bottom: 1rem;
         }
 
-        .additional-info p {
+        .contact-method h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-method p {
             color: #666;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-        }
-
-        .expertise-tags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .expertise-tag {
-            background: #667eea;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -333,22 +273,16 @@
                 display: none;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
             .form-row {
                 grid-template-columns: 1fr;
             }
             
-            .contact-info,
             .contact-form {
                 padding: 2rem;
             }
             
-            .expertise-tags {
-                justify-content: flex-start;
+            .contact-methods {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -382,49 +316,38 @@
         <div class="container">
             <div class="contact-container">
                 
-                <!-- Contact Information -->
-                <div class="contact-info">
-                    <h2>Let's Connect</h2>
-                    
+                <!-- Introduction -->
+                <div class="intro-section">
+                    <h2>Let's Discuss Your Project</h2>
+                    <p>Whether you're looking to optimize court efficiency, implement case weighting systems, or enhance public sector performance, I'm here to help. Send me a message and I'll get back to you within 24 hours.</p>
+                </div>
+
+                <!-- Quick Contact Methods -->
+                <div class="contact-methods">
                     <div class="contact-method">
                         <div class="contact-method-icon">📧</div>
-                        <h3>Email Consultation</h3>
-                        <p>For project inquiries, research collaboration, or general questions about judicial efficiency and data-driven solutions.</p>
-                        <a href="#contact-form" class="contact-button">Send Message</a>
+                        <h3>Email Response</h3>
+                        <p>Within 24 hours</p>
                     </div>
-
-                    <div class="contact-method">
-                        <div class="contact-method-icon">🤝</div>
-                        <h3>Professional Collaboration</h3>
-                        <p>Interested in research partnerships, speaking engagements, or consulting services for your organization.</p>
-                        <a href="#contact-form" class="contact-button">Discuss Collaboration</a>
-                    </div>
-
-                    <div class="contact-method">
-                        <div class="contact-method-icon">📊</div>
-                        <h3>Data & Analytics Projects</h3>
-                        <p>Need help with case weighting systems, court optimization, or public sector efficiency analysis.</p>
-                        <a href="#contact-form" class="contact-button">Get Started</a>
-                    </div>
-
                     <div class="contact-method">
                         <div class="contact-method-icon">🌍</div>
                         <h3>International Projects</h3>
-                        <p>Working on justice system reforms or public sector optimization in any country worldwide.</p>
-                        <a href="#contact-form" class="contact-button">Explore Options</a>
+                        <p>Available worldwide</p>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-method-icon">🤝</div>
+                        <h3>Free Consultation</h3>
+                        <p>Initial discussion</p>
                     </div>
                 </div>
 
                 <!-- Contact Form -->
-                <div class="contact-form" id="contact-form">
-                    <h2>Send a Message</h2>
-                    <p class="subtitle">Fill out the form below and I'll get back to you within 24 hours. All inquiries are treated confidentially.</p>
-                    
+                <div class="contact-form">
                     <div class="success-message" id="success-message">
                         Thank you for your message! I'll get back to you within 24 hours.
                     </div>
 
-                    <form action="https://formspree.io/f/xovaygov" method="POST" id="contact-form-element">
+                    <form action="https://formspree.io/f/xknlkddr" method="POST" id="contact-form-element">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Name *</label>
@@ -436,30 +359,9 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="organization">Organization</label>
-                                <input type="text" id="organization" name="organization">
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Country</label>
-                                <input type="text" id="country" name="country">
-                            </div>
-                        </div>
-
                         <div class="form-group">
-                            <label for="inquiry-type">Type of Inquiry</label>
-                            <select id="inquiry-type" name="inquiry-type">
-                                <option value="">Select an option</option>
-                                <option value="consulting">Consulting Services</option>
-                                <option value="research">Research Collaboration</option>
-                                <option value="speaking">Speaking Engagement</option>
-                                <option value="case-weighting">Case Weighting Systems</option>
-                                <option value="court-optimization">Court Optimization</option>
-                                <option value="data-analytics">Data Analytics Project</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization">
                         </div>
 
                         <div class="form-group">
@@ -469,28 +371,11 @@
 
                         <div class="form-group">
                             <label for="message">Message *</label>
-                            <textarea id="message" name="message" placeholder="Please describe your project, timeline, and any specific requirements..." required></textarea>
+                            <textarea id="message" name="message" placeholder="Please describe your project and how I can help..." required></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
-                </div>
-            </div>
-
-            <!-- Additional Information -->
-            <div class="additional-info">
-                <h3>Areas of Expertise</h3>
-                <p>I specialize in helping organizations optimize their operations through data-driven solutions. Whether you're looking to improve judicial efficiency, implement case weighting systems, or enhance public sector performance, I'm here to help.</p>
-                
-                <div class="expertise-tags">
-                    <span class="expertise-tag">Smart Case Weighting</span>
-                    <span class="expertise-tag">Judicial Administration</span>
-                    <span class="expertise-tag">Court Optimization</span>
-                    <span class="expertise-tag">Data Analytics</span>
-                    <span class="expertise-tag">Public Sector Efficiency</span>
-                    <span class="expertise-tag">Performance Measurement</span>
-                    <span class="expertise-tag">Resource Allocation</span>
-                    <span class="expertise-tag">International Consulting</span>
                 </div>
             </div>
         </div>
@@ -545,7 +430,11 @@
                     this.reset();
                     // Scroll to success message
                     document.getElementById('success-message').scrollIntoView({behavior: 'smooth'});
+                } else {
+                    alert('There was an error sending your message. Please try again.');
                 }
+            }).catch(error => {
+                alert('There was an error sending your message. Please try again.');
             });
         });
     </script>
