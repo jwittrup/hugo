@@ -75,7 +75,7 @@ Over two decades of experience implementing smart case weighting systems and opt
 </div>
 <div class="case-content">
 <h4 class="case-title">Judicial Map Optimization</h4>
-<p class="case-description">Optimizing court locations and analalyzing the potential for judicial specialization to improve efficiency.</p>
+<p class="case-description">Optimizing court locations and analyzing the potential for judicial specialization to improve efficiency.</p>
 </div>
 </div>
 </div>
@@ -225,9 +225,9 @@ Over two decades of experience implementing smart case weighting systems and opt
 <div class="modal-section">
 <h4>Project Components</h4>
 <ul class="modal-list">
-<li>Geographic optimization of court locations</li>
+<li>Geographic optimization of the judicial map</li>
 <li>Feasibility study for administrative courts</li>
-<li>Judicial specialization framework development</li>
+<li>Judicial specialization analysis</li>
 <li>Implementation roadmap creation</li>
 </ul>
 </div>
