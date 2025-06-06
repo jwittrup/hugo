@@ -75,7 +75,7 @@ Over two decades of experience implementing smart case weighting systems and opt
 </div>
 <div class="case-content">
 <h4 class="case-title">Judicial Map Optimization</h4>
-<p class="case-description">Optimizing court locations and implementing judicial specialization for improved efficiency.</p>
+<p class="case-description">Optimizing court locations and analalyzing the potential for judicial specialization to improve efficiency.</p>
 </div>
 </div>
 </div>
@@ -220,7 +220,7 @@ Over two decades of experience implementing smart case weighting systems and opt
 <div class="modal-body">
 <div class="modal-section">
 <h4>Project Overview</h4>
-<p>Dual project focusing on optimizing court locations and implementing judicial specialization to improve efficiency and access to justice throughout Moldova.</p>
+<p>Dual project focusing on optimizing court locations and analyzing the potential of judicial specialization to improve efficiency and access to justice throughout Moldova.</p>
 </div>
 <div class="modal-section">
 <h4>Project Components</h4>
