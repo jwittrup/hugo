@@ -18,8 +18,13 @@
 [context.deploy-preview]
   command = "hugo --gc --minify -F -b $DEPLOY_PRIME_URL"
 
-# Optional: Add redirects if needed
-# [[redirects]]
-#   from = "/old-path/*"
-#   to = "/new-path/:splat"
-#   status = 301
+# Redirects
+[[redirects]]
+  from = "/about/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
