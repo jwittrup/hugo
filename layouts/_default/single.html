@@ -6,6 +6,10 @@
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     <meta name="description" content="{{ .Description }}">
     <meta name="author" content="{{ .Site.Params.author }}">
+    
+    <!-- Google Analytics -->
+    {{ template "_internal/google_analytics.html" . }}
+    
     <style>
         /* Same CSS as homepage but for internal pages */
         * {

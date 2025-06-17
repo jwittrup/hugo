@@ -6,6 +6,10 @@
     <title>{{ .Site.Title }} - {{ .Site.Params.description }}</title>
     <meta name="description" content="{{ .Site.Params.description }}">
     <meta name="author" content="{{ .Site.Params.author }}">
+    
+    <!-- Google Analytics -->
+    {{ template "_internal/google_analytics.html" . }}
+    
     <style>
         /* Inline CSS to ensure it loads during preview */
         * {
@@ -485,5 +489,3 @@
     </footer>
 </body>
 </html>
-
-)

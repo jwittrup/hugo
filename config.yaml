@@ -3,6 +3,9 @@ languageCode: "en"
 title: "Metiri Consult"
 author: "Dr. Jesper Wittrup"
 
+# Google Analytics tracking
+googleAnalytics: "G-WJC08CN7QX"
+
 params:
   description: "Making justice systems efficient through data-driven solutions for courts and public sector institutions worldwide"
   author: "Dr. Jesper Wittrup"
