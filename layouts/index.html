@@ -40,7 +40,9 @@
                     pathname: window.location.pathname
                 });
                 
-                return isDanishTimezone || isDanishLanguage || hasDanishInLanguages;
+                // More restrictive: require multiple Danish indicators OR strong language preference
+                const strongDanishIndicators = [isDanishTimezone, isDanishLanguage, hasDanishInLanguages].filter(Boolean).length;
+                return strongDanishIndicators >= 2 || (isDanishLanguage && strongDanishIndicators >= 1);
             }
             
             // Only redirect from homepage and if Danish detected
