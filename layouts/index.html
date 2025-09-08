@@ -10,6 +10,48 @@
     <!-- Google Analytics -->
     {{ template "_internal/google_analytics.html" . }}
     
+    <!-- Geo-detection for Danish visitors -->
+    <script>
+        (function() {
+            // Check if user has already been redirected or made a choice
+            if (sessionStorage.getItem('geoRedirectHandled')) {
+                return;
+            }
+            
+            // Enhanced geo-detection for Danish visitors
+            function detectDenmark() {
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const language = navigator.language || navigator.userLanguage;
+                const languages = navigator.languages || [];
+                
+                // Check for Danish indicators
+                const isDanishTimezone = timezone === 'Europe/Copenhagen';
+                const isDanishLanguage = language.toLowerCase().startsWith('da');
+                const hasDanishInLanguages = languages.some(lang => lang.toLowerCase().startsWith('da'));
+                
+                // Debug info (remove in production)
+                console.log('Geo-detection debug:', {
+                    timezone: timezone,
+                    language: language,
+                    languages: languages,
+                    isDanishTimezone: isDanishTimezone,
+                    isDanishLanguage: isDanishLanguage,
+                    hasDanishInLanguages: hasDanishInLanguages,
+                    pathname: window.location.pathname
+                });
+                
+                return isDanishTimezone || isDanishLanguage || hasDanishInLanguages;
+            }
+            
+            // Only redirect from homepage and if Danish detected
+            if (window.location.pathname === '/' && detectDenmark()) {
+                sessionStorage.setItem('geoRedirectHandled', 'true');
+                console.log('Redirecting Danish visitor to /da/');
+                window.location.href = '/da/';
+            }
+        })();
+    </script>
+    
     <style>
         /* Inline CSS to ensure it loads during preview */
         * {
