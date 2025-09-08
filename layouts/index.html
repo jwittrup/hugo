@@ -29,8 +29,8 @@
                 const isDanishLanguage = language.toLowerCase().startsWith('da');
                 const hasDanishInLanguages = languages.some(lang => lang.toLowerCase().startsWith('da'));
                 
-                // Very restrictive: only redirect if primary language is Danish
-                const shouldRedirect = isDanishLanguage;
+                // Balanced approach: Danish language OR (Danish timezone + Danish in language list)
+                const shouldRedirect = isDanishLanguage || (isDanishTimezone && hasDanishInLanguages);
                 
                 // Enhanced debug info
                 console.log('Geo-detection debug:', {
