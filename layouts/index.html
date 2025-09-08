@@ -29,7 +29,10 @@
                 const isDanishLanguage = language.toLowerCase().startsWith('da');
                 const hasDanishInLanguages = languages.some(lang => lang.toLowerCase().startsWith('da'));
                 
-                // Debug info (remove in production)
+                // Very restrictive: only redirect if primary language is Danish
+                const shouldRedirect = isDanishLanguage;
+                
+                // Enhanced debug info
                 console.log('Geo-detection debug:', {
                     timezone: timezone,
                     language: language,
@@ -37,12 +40,12 @@
                     isDanishTimezone: isDanishTimezone,
                     isDanishLanguage: isDanishLanguage,
                     hasDanishInLanguages: hasDanishInLanguages,
+                    strongDanishIndicators: strongDanishIndicators,
+                    shouldRedirect: shouldRedirect,
                     pathname: window.location.pathname
                 });
                 
-                // More restrictive: require multiple Danish indicators OR strong language preference
-                const strongDanishIndicators = [isDanishTimezone, isDanishLanguage, hasDanishInLanguages].filter(Boolean).length;
-                return strongDanishIndicators >= 2 || (isDanishLanguage && strongDanishIndicators >= 1);
+                return shouldRedirect;
             }
             
             // Only redirect from homepage and if Danish detected
