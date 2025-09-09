@@ -5,7 +5,7 @@ layout: "danish-landing"
 url: "/da/"
 ---
 
-# METIRI CONSULT
+# METIRI CONSULT ved Jesper Wittrup
 ## Dataanalyse der skaber resultater
 
 Med over 25 års erfaring i effektivitetsanalyse og benchmarking hjælper jeg danske organisationer med at træffe bedre beslutninger baseret på solide data.
