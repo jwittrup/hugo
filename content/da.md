@@ -31,4 +31,4 @@ Mine analyser bygger på avancerede statistiske metoder og R-programmering, men 
 
 **Lad data guide vejen til bedre resultater.**
 
-Kontakt mig for en uforpligtende samtale om, hvordan dataanalyse kan skabe værdi for din organisation.
+[Kontakt mig](/contact/) for en uforpligtende samtale om, hvordan dataanalyse kan skabe værdi for din organisation.
