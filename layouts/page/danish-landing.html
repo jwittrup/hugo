@@ -55,9 +55,30 @@
             color: #666;
             font-style: italic;
         }
+        .language-switcher {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .language-switcher a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: 500;
+        }
+        .language-switcher a:hover {
+            color: #2980b9;
+        }
     </style>
 </head>
 <body>
+    <div class="language-switcher">
+        <a href="/">🇬🇧 English</a>
+    </div>
+    
     <div class="container">
         <span class="flag">🇩🇰</span>
         {{ .Content }}
