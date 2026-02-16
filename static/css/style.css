@@ -374,6 +374,17 @@ h3 {
     background: var(--color-cream);
 }
 
+/* Linked stat items */
+a.stat-item:hover {
+    background: var(--color-cream);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 22, 40, 0.1);
+}
+
+a.stat-item:hover .stat-number {
+    color: var(--color-navy);
+}
+
 .stat-number {
     font-family: var(--font-display);
     font-size: 4rem;
