@@ -8,19 +8,19 @@ layout: "single"
 .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
 .case-card { background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s ease; cursor: pointer; }
 .case-card:hover { transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.15); }
-.case-image { height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; }
+.case-image { height: 150px; background: linear-gradient(135deg, #0A1628 0%, #415A77 100%); display: flex; align-items: center; justify-content: center; color: white; }
 .country-icon { font-size: 2.5rem; margin-right: 1rem; }
 .country-name { font-size: 1.2rem; font-weight: 600; }
 .case-content { padding: 1.5rem; }
 .case-title { font-size: 1.2rem; color: #2c3e50; margin-bottom: 0.8rem; font-weight: 600; }
 .case-description { color: #666; font-size: 0.9rem; line-height: 1.5; }
-.section-title { font-size: 2rem; color: #2c3e50; margin: 3rem 0 1rem 0; border-bottom: 3px solid #667eea; padding-bottom: 0.5rem; }
+.section-title { font-size: 2rem; color: #2c3e50; margin: 3rem 0 1rem 0; border-bottom: 3px solid #D4A574; padding-bottom: 0.5rem; }
 
 /* Modal Styles */
 .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
 .modal-content { background-color: white; margin: 5% auto; padding: 0; border-radius: 15px; width: 90%; max-width: 800px; max-height: 85vh; overflow-y: auto; position: relative; animation: modalSlideIn 0.3s ease-out; }
 @keyframes modalSlideIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
-.modal-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 15px 15px 0 0; position: relative; }
+.modal-header { background: linear-gradient(135deg, #0A1628 0%, #415A77 100%); color: white; padding: 2rem; border-radius: 15px 15px 0 0; position: relative; }
 .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: background 0.3s ease; }
 .modal-close:hover { background: rgba(255,255,255,0.3); }
 .modal-visual { text-align: center; margin-bottom: 1rem; }
@@ -32,10 +32,10 @@ layout: "single"
 .modal-section h4 { color: #2c3e50; margin-bottom: 1rem; font-size: 1.2rem; }
 .modal-list { list-style: none; padding: 0; }
 .modal-list li { padding: 0.3rem 0; padding-left: 1.5rem; position: relative; color: #666; }
-.modal-list li:before { content: "→"; position: absolute; left: 0; color: #667eea; font-weight: bold; }
-.modal-impact { background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #667eea; }
-.modal-link { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.5rem; background: #667eea; color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; }
-.modal-link:hover { background: #5a6fd8; transform: translateY(-2px); }
+.modal-list li:before { content: "→"; position: absolute; left: 0; color: #D4A574; font-weight: bold; }
+.modal-impact { background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #D4A574; }
+.modal-link { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.5rem; background: #0A1628; color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; }
+.modal-link:hover { background: #D4A574; color: #0A1628; transform: translateY(-2px); }
 @media (max-width: 768px) { .cases-grid { grid-template-columns: 1fr; } .modal-content { width: 95%; margin: 2% auto; } .modal-header, .modal-body { padding: 1.5rem; } }
 </style>
 
@@ -395,7 +395,7 @@ Over two decades of experience implementing smart case weighting systems and opt
 ## Ready to Optimize Your Justice System?
 
 <div style="text-align: center; margin: 3rem 0;">
-<a href="/contact/" style="background: #667eea; color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600;">Start Your Project</a>
+<a href="/contact/" style="background: #0A1628; color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600;">Start Your Project</a>
 </div>
 
 <script>
