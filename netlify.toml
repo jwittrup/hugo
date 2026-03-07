@@ -28,3 +28,16 @@
   from = "/about"
   to = "/"
   status = 301
+
+# Google Analytics first-party proxy (bypasses ad blockers)
+[[redirects]]
+  from = "/ga/gtag.js"
+  to = "https://www.googletagmanager.com/gtag/js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ga/g/collect"
+  to = "https://www.google-analytics.com/g/collect"
+  status = 200
+  force = true
