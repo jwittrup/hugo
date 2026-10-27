@@ -1,0 +1,14 @@
+<!-- Remember the visitor's language choice. Netlify sends visitors from DK on "/" to "/da/"
+     (netlify.toml); the nf_country cookie overrides Netlify's geolocation. A link to "/"
+     means "I want English", a link to "/da/" clears the override again. -->
+<script>
+document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="/"], a[href="/da/"]');
+    if (!a) return;
+    if (a.getAttribute('href') === '/') {
+        document.cookie = 'nf_country=GB; path=/; max-age=31536000; samesite=lax';
+    } else {
+        document.cookie = 'nf_country=; path=/; max-age=0; samesite=lax';
+    }
+});
+</script>

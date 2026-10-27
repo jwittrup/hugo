@@ -19,6 +19,16 @@
   command = "hugo --gc --minify -F -b $DEPLOY_PRIME_URL"
 
 # Redirects
+# Visitors from Denmark on the front page go to the Danish page by default.
+# Choosing English sets the nf_country cookie, which overrides Netlify's
+# geolocation (layouts/partials/lang-choice.html). 302, so browsers don't cache it.
+[[redirects]]
+  from = "/"
+  to = "/da/"
+  status = 302
+  force = true
+  conditions = {Country = ["DK"]}
+
 [[redirects]]
   from = "/about/*"
   to = "/"
@@ -28,16 +38,3 @@
   from = "/about"
   to = "/"
   status = 301
-
-# Google Analytics first-party proxy (bypasses ad blockers)
-[[redirects]]
-  from = "/ga/gtag.js"
-  to = "https://www.googletagmanager.com/gtag/js"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/ga/g/collect"
-  to = "https://www.google-analytics.com/g/collect"
-  status = 200
-  force = true

@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} - Metiri Consult</title>
     
-    <!-- Google Analytics -->
-    {{ partial "ga.html" . }}
 
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
@@ -31,6 +29,7 @@
                 <li><a href="/publications/">Publications</a></li>
                 <li><a href="/contact/">Contact</a></li>
                 <li><a href="https://witjes.dk/login" target="_blank">Login</a></li>
+                <li><a href="/da/" hreflang="da" lang="da">🇩🇰 Dansk</a></li>
             </ul>
         </nav>
     </header>
@@ -313,5 +312,6 @@
             <p>&copy; 2025 Metiri Consult - Dr. Jesper Wittrup. All rights reserved.</p>
         </div>
     </footer>
+    {{ partial "lang-choice.html" . }}
 </body>
 </html>

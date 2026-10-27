@@ -7,8 +7,6 @@
     <meta name="description" content="{{ .Description }}">
     <meta name="author" content="{{ .Site.Params.author }}">
     
-    <!-- Google Analytics -->
-    {{ partial "ga.html" . }}
 
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
@@ -33,6 +31,7 @@
                 <li><a href="/publications/">Publications</a></li>
                 <li><a href="/contact/">Contact</a></li>
                 <li><a href="https://witjes.dk/login" target="_blank">Login</a></li>
+                <li><a href="/da/" hreflang="da" lang="da">🇩🇰 Dansk</a></li>
             </ul>
         </nav>
     </header>
@@ -79,5 +78,6 @@
             <p>&copy; 2025 {{ .Site.Title }} - {{ .Site.Params.author }}. All rights reserved.</p>
         </div>
     </footer>
+    {{ partial "lang-choice.html" . }}
 </body>
 </html>

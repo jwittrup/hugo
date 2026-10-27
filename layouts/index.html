@@ -7,55 +7,12 @@
     <meta name="description" content="{{ .Site.Params.description }}">
     <meta name="author" content="{{ .Site.Params.author }}">
     
-    <!-- Google Analytics -->
-    {{ partial "ga.html" . }}
+
+    {{ partial "hreflang.html" . }}
 
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
 
-    <!-- Location-based detection for Danish visitors -->
-    <script>
-        (function() {
-            // Check if user has already been redirected or made a choice
-            if (sessionStorage.getItem('geoRedirectHandled') || window.location.pathname !== '/') {
-                return;
-            }
-
-            // Try to get user's location via IP geolocation
-            function detectLocationAndRedirect() {
-                // Use a free IP geolocation service
-                fetch('https://ipapi.co/json/')
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Location detection:', {
-                            country: data.country_code,
-                            country_name: data.country_name,
-                            city: data.city,
-                            ip: data.ip
-                        });
-
-                        // Mark as handled regardless of result
-                        sessionStorage.setItem('geoRedirectHandled', 'true');
-
-                        // Redirect if Denmark
-                        if (data.country_code === 'DK') {
-                            console.log('Danish location detected, redirecting to /da/');
-                            window.location.href = '/da/';
-                        } else {
-                            console.log('Non-Danish location, staying on English site');
-                        }
-                    })
-                    .catch(error => {
-                        console.log('Location detection failed, staying on English site:', error);
-                        // Mark as handled so we don't keep trying
-                        sessionStorage.setItem('geoRedirectHandled', 'true');
-                    });
-            }
-
-            // Start location detection
-            detectLocationAndRedirect();
-        })();
-    </script>
 </head>
 <body>
     <!-- Header -->
@@ -70,6 +27,7 @@
                 <li><a href="/publications/">Publications</a></li>
                 <li><a href="/contact/">Contact</a></li>
                 <li><a href="https://witjes.dk/login" target="_blank">Login</a></li>
+                <li><a href="/da/" hreflang="da" lang="da">🇩🇰 Dansk</a></li>
             </ul>
         </nav>
     </header>
@@ -182,5 +140,6 @@
             <p>&copy; 2025 {{ .Site.Title }} - {{ .Site.Params.author }}. All rights reserved.</p>
         </div>
     </footer>
+    {{ partial "lang-choice.html" . }}
 </body>
 </html>

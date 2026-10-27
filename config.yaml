@@ -3,14 +3,12 @@ languageCode: "en"
 title: "Metiri Consult"
 author: "Dr. Jesper Wittrup"
 
-# Google Analytics tracking
-googleAnalytics: "G-WJC08CN7QX"
-
 params:
   description: "Making justice systems efficient through data-driven solutions for courts and public sector institutions worldwide"
   author: "Dr. Jesper Wittrup"
   email: "jw@metiri.dk"
   phone: "(+45) 60897138"
+  cvr: "27884210"
   
 markup:
   goldmark:
@@ -39,6 +37,9 @@ menu:
     - name: "Login"
       url: "https://witjes.dk/login"
       weight: 5
+    - name: "🇩🇰 Dansk"
+      url: "/da/"
+      weight: 6
 
 outputs:
   home: ["HTML", "RSS"]

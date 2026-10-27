@@ -4,44 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
-    
-    <!-- Google Analytics -->
-    {{ partial "ga.html" . }}
+    <meta name="description" content="{{ .Description }}">
+    <meta name="author" content="{{ .Site.Params.author }}">
+
+    {{ partial "hreflang.html" . }}
 
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
 
     <style>
+        /* Page-specific adjustment for fixed header */
         body {
+            padding-top: 80px;
+        }
+        .da-content {
             max-width: 900px;
             margin: 0 auto;
-            padding: 3rem 2rem;
-            font-family: var(--font-heading);
-            font-size: 1rem;
-        }
-        .container {
             background: var(--color-white);
             padding: 3rem;
             border-left: var(--border-thick) solid var(--color-amber);
         }
-        h1 {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            color: var(--color-navy);
-            margin-bottom: 0.5rem;
-            text-transform: none;
-            letter-spacing: -0.01em;
-        }
-        h2 {
+        .da-content h2 {
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--color-navy);
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             margin-bottom: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
+            scroll-margin-top: 100px;
         }
-        h3 {
+        .da-content h2:first-child {
+            margin-top: 0;
+        }
+        .da-content h3 {
             font-size: 1rem;
             font-weight: 700;
             color: var(--color-amber-dark);
@@ -49,76 +45,112 @@
             margin-bottom: 0.4rem;
             letter-spacing: 0.02em;
         }
-        p {
+        .da-content p {
             color: var(--color-gray);
             line-height: 1.75;
             margin-bottom: 0.75rem;
         }
-        strong {
+        .da-content strong {
             color: var(--color-navy);
             font-weight: 700;
         }
-        .continue-link {
-            display: inline-block;
-            background: var(--color-navy);
-            color: var(--color-white);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
+        .da-content a {
+            color: var(--color-navy);
+        }
+        .da-contact dl {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 0.4rem 1.5rem;
+            margin: 1rem 0 0;
+        }
+        .da-contact dt {
             font-family: var(--font-heading);
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 2rem;
-            transition: all var(--transition-base);
-        }
-        .continue-link:hover {
-            background: var(--color-amber);
             color: var(--color-navy);
-            transform: translateY(-2px);
         }
-        .flag {
-            font-size: 2rem;
-            margin-right: 1rem;
-        }
-        hr {
-            margin: 2rem 0;
-            border: none;
-            border-top: var(--border-thin) solid var(--color-gray-light);
-        }
-        .english-note {
+        .da-contact dd {
+            margin: 0;
             color: var(--color-gray);
-            font-style: italic;
         }
-        .language-switcher {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: var(--color-white);
-            padding: 0.75rem 1.5rem;
-            border: var(--border-medium) solid var(--color-amber);
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.75rem;
         }
-        .language-switcher a {
-            text-decoration: none;
-            color: var(--color-navy);
-            font-family: var(--font-heading);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.9rem;
-        }
-        .language-switcher a:hover {
-            color: var(--color-amber);
+        @media (max-width: 480px) {
+            .da-content {
+                padding: 2rem 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="language-switcher">
-        <a href="/">🇬🇧 English</a>
-    </div>
-    
-    <div class="container">
-        <span class="flag">🇩🇰</span>
-        {{ .Content }}
-    </div>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container">
+            <div class="nav-brand">
+                <a href="/da/" class="logo">Metiri Consult</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#ydelser">Ydelser</a></li>
+                <li><a href="#baggrund">Baggrund</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="/" hreflang="en" lang="en">🇬🇧 English</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>{{ .Title }}</h1>
+            <p>{{ .Description }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="da-content">
+                {{ .Content }}
+
+                <section class="da-contact">
+                    <h2 id="kontakt">Kontakt</h2>
+                    <p>Kontakt mig for en uforpligtende samtale om, hvordan dataanalyse kan skabe værdi for din organisation.</p>
+                    <dl>
+                        <dt>Mail</dt>
+                        <dd><a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></dd>
+                        <dt>Telefon</dt>
+                        <dd><a href="tel:{{ replaceRE `[^0-9+]` `` .Site.Params.phone }}">{{ .Site.Params.phone }}</a></dd>
+                        <dt>CVR</dt>
+                        <dd>{{ .Site.Params.cvr }}</dd>
+                    </dl>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>{{ .Site.Title }}</h4>
+                    <p>v/ {{ .Site.Params.author }}</p>
+                    <p>CVR {{ .Site.Params.cvr }}</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+                    <a href="tel:{{ replaceRE `[^0-9+]` `` .Site.Params.phone }}">{{ .Site.Params.phone }}</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Sprog</h4>
+                    <a href="/" hreflang="en" lang="en">🇬🇧 English</a>
+                </div>
+            </div>
+            <p>&copy; {{ now.Year }} {{ .Site.Title }} · CVR {{ .Site.Params.cvr }}</p>
+        </div>
+    </footer>
+    {{ partial "lang-choice.html" . }}
 </body>
 </html>
